@@ -1,0 +1,4 @@
+In addition to the original authors, the following individuals or
+organizations have contributed to this project:
+
+* 3Di, Inc. (http://3di.jp)
