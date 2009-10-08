@@ -20,6 +20,7 @@ extern "C"
     EXPORT IntPtr SceneManager_AddSkyBoxSceneNode(IntPtr scenemanager, IntPtr top, IntPtr bottom, IntPtr left, IntPtr right, IntPtr front, IntPtr back, IntPtr parent, int id);
     EXPORT IntPtr SceneManager_AddTerrainMesh(IntPtr scenemanager, M_STRING meshname, IntPtr texture, IntPtr heightmap, M_DIM2DF stretchSize, float maxHeight, M_DIM2DS defaultVertexBlockSize);
     EXPORT IntPtr SceneManager_AddTerrainSceneNode(IntPtr scenemanager, M_STRING heightMap, IntPtr parent, int id, M_VECT3DF position, M_VECT3DF rotation, M_VECT3DF scale, M_SCOLOR vertexColor,int maxLOD, E_TERRAIN_PATCH_SIZE patchSize, int smoothFactor);
+    EXPORT IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, float* data, int width, IntPtr parent, int id, M_VECT3DF position, M_VECT3DF rotation, M_VECT3DF scale, M_SCOLOR vertexColor,int maxLOD, E_TERRAIN_PATCH_SIZE patchSize, int smoothFactor);
     EXPORT IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, M_STRING TreeXML, IntPtr parent, int id, M_VECT3DF position, M_VECT3DF rotation, M_VECT3DF scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture);
 	EXPORT IntPtr SceneManager_AddCubeSceneNode(IntPtr scenemanager, float size, IntPtr parent, int id);
     EXPORT IntPtr SceneManager_AddSkyDomeSceneNode(IntPtr scenemanager, IntPtr texture, unsigned int  horiRes, unsigned int  vertRes, double  texturePercentage, double  spherePercentage, IntPtr parent);

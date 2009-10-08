@@ -322,6 +322,16 @@ namespace IrrlichtNETCP
 										typeof(TerrainSceneNode));
 		}
 
+        public TerrainSceneNode AddTerrainSceneNodeFromRawData(float[,] data, int width, SceneNode parent, int id, Vector3D position, Vector3D rotation, Vector3D scale, Color vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor)
+        {
+            IntPtr par = IntPtr.Zero;
+            if (parent != null)
+                par = parent.Raw;
+            return (TerrainSceneNode)
+                NativeElement.GetObject(SceneManager_AddTerrainSceneNodeFromRawData(_raw, data, width, par, id, position.ToUnmanaged(), rotation.ToUnmanaged(), scale.ToUnmanaged(), vertexColor.ToUnmanaged(), maxLOD, patchSize, smoothFactor),
+                                        typeof(TerrainSceneNode));
+        }
+
         public SceneNode AddTreeSceneNode(string XMLString, SceneNode parent, int id, Vector3D position,
             Vector3D rotation, Vector3D scale, Texture TreeTexture, Texture LeafTexture, Texture BillTexture)
         {
@@ -992,6 +1002,9 @@ namespace IrrlichtNETCP
 	    
 	     [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
         static extern IntPtr SceneManager_AddTerrainSceneNode(IntPtr scenemanager, string TreeXML, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
+
+         [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
+         static extern IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, float[,] data, int width, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
 
         [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
         static extern IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, string heightMap, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture);

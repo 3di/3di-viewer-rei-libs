@@ -856,6 +856,45 @@ ITerrainSceneNode* CSceneManager::addTerrainSceneNode(
 }
 
 //! Adds a terrain scene node to the scene graph.
+ITerrainSceneNode* CSceneManager::addTerrainSceneNodeFromRawData(
+	f32* data,
+	u32 width,
+	ISceneNode* parent, s32 id,
+	const core::vector3df& position,
+	const core::vector3df& rotation,
+	const core::vector3df& scale,
+	video::SColor vertexColor,
+	s32 maxLOD, E_TERRAIN_PATCH_SIZE patchSize,
+	s32 smoothFactor,
+	bool addAlsoIfHeightmapEmpty)
+{
+	if (!parent)
+		parent = this;
+
+	if (!data && !addAlsoIfHeightmapEmpty)
+	{
+		os::Printer::log("Could not load terrain, because data was empty.", ELL_ERROR);
+		return 0;
+	}
+
+	CTerrainSceneNode* node = new CTerrainSceneNode(parent, this, FileSystem, id,
+		maxLOD, patchSize, position, rotation, scale);
+
+	if (!node->addHeightMap(data, width, vertexColor, smoothFactor))
+	{
+		if (!addAlsoIfHeightmapEmpty)
+		{
+			node->remove();
+			node->drop();
+			return 0;
+		}
+	}
+
+	node->drop();
+	return node;
+}
+
+//! Adds a terrain scene node to the scene graph.
 ITerrainSceneNode* CSceneManager::addTerrainSceneNode(
 	io::IReadFile* heightMapFile,
 	ISceneNode* parent, s32 id,
