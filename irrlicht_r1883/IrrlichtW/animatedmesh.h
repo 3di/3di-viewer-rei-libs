@@ -22,5 +22,6 @@ extern "C"
     EXPORT IntPtr AnimatedMeshSceneNode_GetJointNode(IntPtr node, u32 jointn);
     EXPORT IntPtr AnimatedMeshSceneNode_GetJointNodeA(IntPtr node, M_STRING name);
     EXPORT void AnimatedMeshSceneNode_SetJointMode(IntPtr node, E_JOINT_UPDATE_ON_RENDER mode);
+    EXPORT void AnimatedMeshSceneNode_SetTransitionTime(IntPtr node, float time);
     EXPORT void AnimatedMeshSceneNode_AnimateJoints (IntPtr node, bool calc);
 }

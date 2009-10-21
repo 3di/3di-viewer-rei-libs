@@ -268,7 +268,6 @@ void CAnimatedMeshSceneNode::OnAnimate(u32 timeMs)
 {
 	CurrentFrameNr = buildFrameNr ( timeMs );
 
-	/*
 	if ( Mesh )
 	{
 		scene::IMesh * mesh = getMeshForCurrentFrame(true);
@@ -276,7 +275,6 @@ void CAnimatedMeshSceneNode::OnAnimate(u32 timeMs)
 		if ( mesh )
 			Box = mesh->getBoundingBox();
 	}
-	*/
 	IAnimatedMeshSceneNode::OnAnimate ( timeMs );
 }
 

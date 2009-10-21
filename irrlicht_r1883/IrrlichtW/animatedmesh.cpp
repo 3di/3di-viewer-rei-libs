@@ -73,6 +73,11 @@ void AnimatedMeshSceneNode_SetJointMode(IntPtr node, E_JOINT_UPDATE_ON_RENDER mo
 	GetNodeFromIntPtr(node)->setJointMode(mode);
 }
 
+void AnimatedMeshSceneNode_SetTransitionTime(IntPtr node, float time)
+{
+       GetNodeFromIntPtr(node)->setTransitionTime(time);
+}
+
 void AnimatedMeshSceneNode_AnimateJoints (IntPtr node, bool calc)
 {
 	GetNodeFromIntPtr(node)->animateJoints(calc);

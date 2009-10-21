@@ -210,7 +210,16 @@ namespace IrrlichtNETCP
 			}
 		}
 		
-		/// <summary>
+        /// <summary>
+        /// sets the transition time between blended animation
+        /// </summary>
+        /// <param name="time">time in ms</param>
+        public void SetTransitionTime(float time)
+        {
+            AnimatedMeshSceneNode_SetTransitionTime(_raw, time);
+        }
+
+        /// <summary>
 		/// animates the joints in the mesh based on the current frame (also takes in to account transitions)
 		/// </summary>
 		/// <param name="CalculateAbsolutePositions">
@@ -267,6 +276,9 @@ namespace IrrlichtNETCP
 		[DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
 		static extern void AnimatedMeshSceneNode_SetJointMode(IntPtr node, int mode);
 		
+        [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
+        static extern void AnimatedMeshSceneNode_SetTransitionTime(IntPtr node, float time);
+
 		[DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
 		static extern void AnimatedMeshSceneNode_AnimateJoints (IntPtr node, bool calc);
 		
