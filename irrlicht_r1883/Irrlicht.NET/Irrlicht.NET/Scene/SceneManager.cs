@@ -328,7 +328,7 @@ namespace IrrlichtNETCP
             if (parent != null)
                 par = parent.Raw;
             return (TerrainSceneNode)
-                NativeElement.GetObject(SceneManager_AddTerrainSceneNodeFromRawData(_raw, data, width, par, id, position.ToUnmanaged(), rotation.ToUnmanaged(), scale.ToUnmanaged(), vertexColor.ToUnmanaged(), maxLOD, patchSize, smoothFactor),
+                NativeElement.GetObject(SceneManager_AddTerrainSceneNodeFromRawData(_raw, data, data.Length, width, par, id, position.ToUnmanaged(), rotation.ToUnmanaged(), scale.ToUnmanaged(), vertexColor.ToUnmanaged(), maxLOD, patchSize, smoothFactor),
                                         typeof(TerrainSceneNode));
         }
 
@@ -1004,7 +1004,7 @@ namespace IrrlichtNETCP
         static extern IntPtr SceneManager_AddTerrainSceneNode(IntPtr scenemanager, string TreeXML, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
 
          [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
-         static extern IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, float[,] data, int width, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
+         static extern IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, [MarshalAs(UnmanagedType.LPArray,SizeParamIndex=2)] float[,] data, int size, int width, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
 
         [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
         static extern IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, string heightMap, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture);

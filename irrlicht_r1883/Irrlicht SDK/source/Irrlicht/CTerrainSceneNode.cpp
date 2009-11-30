@@ -321,9 +321,8 @@ namespace scene
 				vertex.Normal.set(0.0f, 1.0f, 0.0f);
 				vertex.Color = vertexColor;
 				vertex.Pos.X = fx;
-				vertex.Pos.Y = data[(TerrainData.Size-1)-x,z];
+				vertex.Pos.Y = data[(x)*(width)+z];
 				vertex.Pos.Z = fz;
-
 				vertex.TCoords.X = vertex.TCoords2.X = 1.f-fx2;
 				vertex.TCoords.Y = vertex.TCoords2.Y = fz2;
 
