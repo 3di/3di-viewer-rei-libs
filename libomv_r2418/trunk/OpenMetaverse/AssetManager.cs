@@ -336,7 +336,7 @@ namespace OpenMetaverse
     /// <summary>
     /// 
     /// </summary>
-    public class AssetManager
+    public class AssetManager : IDisposable
     {
         #region Delegates
 
@@ -443,6 +443,15 @@ namespace OpenMetaverse
             // HACK: Re-request stale pending image downloads
             RefreshDownloadsTimer.Elapsed += new System.Timers.ElapsedEventHandler(RefreshDownloadsTimer_Elapsed);
             RefreshDownloadsTimer.Start();
+        }
+
+        public void Dispose()
+        {
+            if (RefreshDownloadsTimer != null && RefreshDownloadsTimer.Enabled)
+            {
+                RefreshDownloadsTimer.Dispose();
+                RefreshDownloadsTimer = null;
+            }
         }
 
         private void RefreshDownloadsTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -681,6 +690,8 @@ namespace OpenMetaverse
                 }
             }
 
+            Simulator currentSim = Client.Network.CurrentSim;
+
             // Priority == 0 && DiscardLevel == -1 means cancel the transfer
             if (priority.Equals(0) && discardLevel.Equals(-1))
             {
@@ -697,11 +708,10 @@ namespace OpenMetaverse
                 cancel.RequestImage[0].Packet = 0;
                 cancel.RequestImage[0].Image = imageID;
                 cancel.RequestImage[0].Type = 0;
+                Client.Network.SendPacket(cancel, currentSim);
             }
             else
             {
-                Simulator currentSim = Client.Network.CurrentSim;
-
                 if (!Transfers.ContainsKey(imageID))
                 {
                     // New download

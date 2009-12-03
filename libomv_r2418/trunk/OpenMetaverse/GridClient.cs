@@ -65,7 +65,7 @@ namespace OpenMetaverse
     /// }
     /// </code>
     /// </example>
-    public class GridClient
+    public class GridClient : IDisposable
     {
         /// <summary>Networking subsystem</summary>
         public NetworkManager Network;
@@ -159,6 +159,15 @@ namespace OpenMetaverse
             //        if (Settings.ENABLE_LIBRARY_STORE)
             //            LibraryStore.InitializeFromSkeleton(Inventory.LibrarySkeleton);
             //    };
+        }
+
+        public void Dispose()
+        {
+            if (Assets != null)
+            {
+                Assets.Dispose();
+                Assets = null;
+            }
         }
 
         /// <summary>
