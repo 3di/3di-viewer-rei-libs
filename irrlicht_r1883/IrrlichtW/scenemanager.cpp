@@ -104,9 +104,9 @@ IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, float* d
 }
 
 
-IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, M_STRING TreeXML, IntPtr parent, int id, M_VECT3DF position, M_VECT3DF rotation, M_VECT3DF scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture)
+IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, M_STRING TreeXML, IntPtr parent, int id, M_VECT3DF position, M_VECT3DF rotation, M_VECT3DF scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture, int LeafMaterial)
 {
-	 return GetSceneFromIntPtr(scenemanager)->addTreeSceneNode(TreeXML, (ISceneNode*)parent, id, MU_VECT3DF(position), MU_VECT3DF(rotation), MU_VECT3DF(scale), (ITexture*)TreeTexture, (ITexture*)LeafTexture, (ITexture*)BillTexture);
+	 return GetSceneFromIntPtr(scenemanager)->addTreeSceneNode(TreeXML, (ISceneNode*)parent, id, MU_VECT3DF(position), MU_VECT3DF(rotation), MU_VECT3DF(scale), (ITexture*)TreeTexture, (ITexture*)LeafTexture, (ITexture*)BillTexture, LeafMaterial);
 }
 
 IntPtr SceneManager_AddCubeSceneNode(IntPtr scenemanager, float size, IntPtr parent, int id)

@@ -333,6 +333,17 @@ namespace IrrlichtNETCP
         }
 
         public SceneNode AddTreeSceneNode(string XMLString, SceneNode parent, int id, Vector3D position,
+            Vector3D rotation, Vector3D scale, Texture TreeTexture, Texture LeafTexture, Texture BillTexture, int LeafMaterial)
+        {
+
+            IntPtr par = IntPtr.Zero;
+            if (parent != null)
+                par = parent.Raw;
+            return (SceneNode)
+                NativeElement.GetObject(SceneManager_AddTreeSceneNode(_raw,XMLString,par,id,position.ToUnmanaged(),rotation.ToUnmanaged(),scale.ToUnmanaged(), TreeTexture.Raw, LeafTexture.Raw, BillTexture.Raw, LeafMaterial), typeof(SceneNode));
+        }
+
+        public SceneNode AddTreeSceneNode(string XMLString, SceneNode parent, int id, Vector3D position,
             Vector3D rotation, Vector3D scale, Texture TreeTexture, Texture LeafTexture, Texture BillTexture)
         {
 
@@ -340,7 +351,7 @@ namespace IrrlichtNETCP
             if (parent != null)
                 par = parent.Raw;
             return (SceneNode)
-                NativeElement.GetObject(SceneManager_AddTreeSceneNode(_raw,XMLString,par,id,position.ToUnmanaged(),rotation.ToUnmanaged(),scale.ToUnmanaged(), TreeTexture.Raw, LeafTexture.Raw, BillTexture.Raw), typeof(SceneNode));
+                NativeElement.GetObject(SceneManager_AddTreeSceneNode(_raw, XMLString, par, id, position.ToUnmanaged(), rotation.ToUnmanaged(), scale.ToUnmanaged(), TreeTexture.Raw, LeafTexture.Raw, BillTexture.Raw, (int)MaterialType.TransparentAlphaChannel), typeof(SceneNode));
         }
 		
 		/// <summary>
@@ -1007,7 +1018,7 @@ namespace IrrlichtNETCP
          static extern IntPtr SceneManager_AddTerrainSceneNodeFromRawData(IntPtr scenemanager, [MarshalAs(UnmanagedType.LPArray,SizeParamIndex=2)] float[,] data, int size, int width, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, int[] vertexColor, int maxLOD, TerrainPatchSize patchSize, int smoothFactor);
 
         [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
-        static extern IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, string heightMap, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture);
+        static extern IntPtr SceneManager_AddTreeSceneNode(IntPtr scenemanager, string heightMap, IntPtr parent, int id, float[] position, float[] rotation, float[] scale, IntPtr TreeTexture, IntPtr LeafTexture, IntPtr BillTexture, int LeafMaterial);
 	    
 	     [DllImport(Native.Dll), SuppressUnmanagedCodeSecurity]
         static extern IntPtr SceneManager_AddCubeSceneNode(IntPtr scenemanager, float size, IntPtr parent, int id);

@@ -784,7 +784,8 @@ CTreeSceneNode* CSceneManager::addTreeSceneNode(
 	const core::vector3df& scale,
 	video::ITexture* TreeTexture,
     video::ITexture* LeafTexture,
-    video::ITexture* BillTexture
+    video::ITexture* BillTexture,
+	s32 LeafMaterial
 	)
 {
 	CTreeGenerator* Generator = new CTreeGenerator( this );
@@ -793,17 +794,6 @@ CTreeSceneNode* CSceneManager::addTreeSceneNode(
 	Generator->loadFromXML( xml );
 	xml->drop();
 	
-	video::E_MATERIAL_TYPE leafMaterialType = video::EMT_TRANSPARENT_ALPHA_CHANNEL;
-	leafMaterialType = (video::E_MATERIAL_TYPE) Driver->getGPUProgrammingServices()->addHighLevelShaderMaterialFromFiles(
-        "../leaves.vert",
-        "main",
-		(irr::video::E_VERTEX_SHADER_TYPE)1,
-        "../leaves.frag",
-        "main",
-		(irr::video::E_PIXEL_SHADER_TYPE)4,
-        0,
-		(irr::video::E_MATERIAL_TYPE)13,
-        0);
 	tree = new CTreeSceneNode( getRootSceneNode(),this);
 	tree->drop();
 
@@ -820,7 +810,8 @@ CTreeSceneNode* CSceneManager::addTreeSceneNode(
     //if ( lightsEnabled )
        // tree->getLeafNode()->applyVertexShadows( lightDir, 1.0f, 0.25f );
     
-    tree->getLeafNode()->setMaterialType( leafMaterialType );
+	if (LeafMaterial != -1)
+		tree->getLeafNode()->setMaterialType( (video::E_MATERIAL_TYPE)LeafMaterial );
 
 	return tree;
 }

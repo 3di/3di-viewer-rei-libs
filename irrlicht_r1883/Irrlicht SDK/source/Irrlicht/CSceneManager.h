@@ -270,7 +270,8 @@ namespace scene
 			const core::vector3df& scale = core::vector3df(1.0f,1.0f,1.0f),
 			irr::video::ITexture* TreeTexture = 0,
 			irr::video::ITexture* LeafTexture = 0,
-			irr::video::ITexture* BillTexture = 0
+			irr::video::ITexture* BillTexture = 0,
+			s32 LeafMaterial = (s32)video::EMT_TRANSPARENT_ALPHA_CHANNEL
 			);
 
 		//! Adds a dummy transformation scene node to the scene graph.
