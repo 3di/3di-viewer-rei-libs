@@ -7,6 +7,10 @@ extern "C"
 	typedef void (STDCALL AFFECTORCALLBACK)(unsigned int, IntPtr*, int);
 
     EXPORT void Emitter_AddParticle(IntPtr emitter, IntPtr *part, int count);
+    EXPORT void Emitter_SetMinStartSize(IntPtr emitter, M_DIM2DF size);
+    EXPORT void Emitter_SetMaxStartSize(IntPtr emitter, M_DIM2DF size);
+    EXPORT void Emitter_GetMinStartSize(IntPtr emitter, M_DIM2DF size);
+    EXPORT void Emitter_GetMaxStartSize(IntPtr emitter, M_DIM2DF size);
 
     EXPORT void Particle_AddAffector(IntPtr part, IntPtr affector);
     EXPORT void Particle_AddAffectorA(IntPtr part, AFFECTORCALLBACK affector);

@@ -212,6 +212,26 @@ class Emitter : public IParticleEmitter
      ((Emitter*)emitter)->AddParticles(part, count);
  }
 
+void Emitter_SetMinStartSize(IntPtr emitter, M_DIM2DF size)
+{
+    ((Emitter*)emitter)->setMinStartSize(MU_DIM2DF(size));
+}
+
+void Emitter_SetMaxStartSize(IntPtr emitter, M_DIM2DF size)
+{
+    ((Emitter*)emitter)->setMaxStartSize(MU_DIM2DF(size));
+}
+
+void Emitter_GetMinStartSize(IntPtr emitter, M_DIM2DF size)
+{
+    UM_DIM2DF(((Emitter*)emitter)->getMinStartSize(), size);
+}
+
+void Emitter_GetMaxStartSize(IntPtr emitter, M_DIM2DF size)
+{
+    UM_DIM2DF(((Emitter*)emitter)->getMaxStartSize(), size);
+}
+
 
 void Particle_SetEmitterA(IntPtr part, EMITTERCALLBACK callback)
 {
