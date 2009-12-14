@@ -37,7 +37,7 @@ namespace IrrlichtNETCP.Extensions
             vertices[3].TCoords = Vector2D.From(1.0f, 1.0f);
             vertices[3].Color = Color.White;
 
-            material = new Material();
+            material = new Material(true);
 
             material.Lighting = false;
 
