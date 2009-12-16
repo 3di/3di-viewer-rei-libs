@@ -100,11 +100,18 @@ bool Memory_Diff()
 #endif
 
 #ifdef _MSC_VER
+#ifndef WIN64
 bool fixmarshal(bool val)
 {
 	__asm mov eax, 100;
 	return val;
 }
+#else
+bool fixmarshal(bool val)
+{
+	return val;
+}
+#endif
 #endif
 
 //Converts from irr::core::stringw to managed string --> getToolTipText

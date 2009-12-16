@@ -660,7 +660,11 @@ void CIrrDeviceWin32::resizeIfNecessary()
 //! sets the caption of the window
 void CIrrDeviceWin32::setWindowCaption(const wchar_t* text)
 {
+#if !defined(WIN64)
 	DWORD dwResult;
+#else
+	DWORD_PTR dwResult;
+#endif
 	if (IsNonNTWindows)
 	{
 		const core::stringc s = text;
