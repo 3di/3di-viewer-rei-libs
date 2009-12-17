@@ -131,4 +131,11 @@ using System;
  		TPS65 = 65,
  		TPS129 = 129
  	}
+
+     public struct FogType
+     {
+         public static bool Linear = true;
+         public static bool Exponential = false;
+         public static bool Exponential2 = false;
+     }
  }
